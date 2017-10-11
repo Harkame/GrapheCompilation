@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.List;
 
 class Summit
 	{
@@ -15,7 +16,7 @@ class Summit
 			neighbors = new ArrayList<Summit>();
 		}
 		
-		public static Summit getColorableSummit(ArrayList<Summit> summits, int k)
+		public static Summit getColorableSummit(List<Summit> summits, int k)
 		{
 			Summit colorableSummit = null;
 			
