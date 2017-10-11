@@ -24,6 +24,16 @@ class Summit
 			
 			return colorableSummit;
 		}
+
+		public static Summit getHighestDegreeSummit(ArrayList<Summit> summits){
+			Summit summit = summits.get(0);
+
+			for (Summit s : summits){
+				if (summit.getDegree() < s.getDegree())
+					summit = s;
+			}
+			return summit;
+		}
 		
 		public int getFirstAvailableColor()
 		{
