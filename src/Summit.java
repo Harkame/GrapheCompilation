@@ -15,8 +15,12 @@ class Summit
 			
 			neighbors = new ArrayList<Summit>();
 		}
-		
-		public static Summit getColorableSummit(List<Summit> summits, int k)
+
+        public String getName() {
+            return name;
+        }
+
+        public static Summit getColorableSummit(List<Summit> summits, int k)
 		{
 			Summit colorableSummit = null;
 			
@@ -74,6 +78,10 @@ class Summit
 		public String toString()
 		{
 			StringBuilder toString = new StringBuilder();
+			toString.append(name).append(" : ").append(color).append(" --> ");
+			for (Summit n : neighbors){
+			    toString.append("\t\t").append(n.color).append(" : ").append(n.name);
+            }
 			
 			return toString.toString();
 		}
