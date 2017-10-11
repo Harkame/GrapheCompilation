@@ -54,6 +54,17 @@ public class Graphe
 	{
 		StringBuilder toString = new StringBuilder();
 		
+		toString.append("Sommets :" + System.getProperty("line.separator"));
+		
+		for(Summit summit : summits)
+			toString.append("\t" + summit.toString());
+		
+		toString.append(System.getProperty("line.separator"));
+		toString.append("Pile :" + System.getProperty("line.separator"));
+		
+		for(Summit summit : summits)
+			toString.append("\t" + summit.getName() + System.getProperty("line.separator"));
+		
 		return toString.toString();
 	}
 }
