@@ -63,7 +63,11 @@ public class Main {
         }
 
 
-        graphe.colorate(k);
+        try {
+            graphe.colorate(k);
+        } catch (CloneNotSupportedException e) {
+            e.printStackTrace();
+        }
 
     }
 

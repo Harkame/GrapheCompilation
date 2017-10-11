@@ -25,7 +25,7 @@ class Summit
 			return colorableSummit;
 		}
 
-		public static Summit getHighestDegreeSummit(ArrayList<Summit> summits){
+		public static Summit getHighestDegreeSummit(List<Summit> summits){
 			Summit summit = summits.get(0);
 
 			for (Summit s : summits){
