@@ -17,7 +17,7 @@ class Summit
 		
 		public static Summit getColorableSummit(ArrayList<Summit> summits, int k)
 		{
-			
+			return null;
 		}
 		
 		public int getFirstAvailableColor()
@@ -48,6 +48,11 @@ class Summit
 			this.neighbors.add(summitToLink);
 			
 			summitToLink.neighbors.add(this);
+		}
+		
+		public void setColor(int newColor)
+		{
+			color = newColor;
 		}
 		
 		@Override
