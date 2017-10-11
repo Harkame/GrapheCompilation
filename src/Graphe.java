@@ -12,15 +12,15 @@ public class Graphe
 		summitsSpilled = new ArrayList<Summit>();
 	}
 	
-	public void colorate(Graphe grapheToColorate) throws CloneNotSupportedException
+	public void colorate() throws CloneNotSupportedException
 	{
-		Summit summit = null;
+		Summit summit = getColorableSummit(summits)
 		if(true) //il existe un sommet s trivialement colorable
 		{
 			Graphe newGraphe = (Graphe) this.clone();
 			newGraphe.removeSummit(summit);
 			
-			colorate(newGraphe);
+			newGraphe.colorate();
 			
 			summit.setColor(summit.getFirstAvailableColor());
 		}
@@ -29,7 +29,7 @@ public class Graphe
 			Graphe newGraphe = (Graphe) this.clone();
 			newGraphe.removeSummit(summit);
 			
-			colorate(newGraphe);
+			newGraphe.colorate();
 			
 			summitsSpilled.add(summit);
 		}
