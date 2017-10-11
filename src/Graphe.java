@@ -35,6 +35,12 @@ public class Graphe
 		}
 	}
 	
+	public void addSummit(Summit... summitsToAdd)
+	{
+		for(Summit summit : summitsToAdd)
+			summits.add(summit);
+	}
+	
 	public void addSummit(Summit summitToAdd)
 	{
 		summits.add(summitToAdd);
