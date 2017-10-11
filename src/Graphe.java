@@ -35,7 +35,7 @@ public class Graphe
 		}
 	}
 	
-	public void addSummit(Summit... summitsToAdd)
+	public void addSummits(Summit... summitsToAdd)
 	{
 		for(Summit summit : summitsToAdd)
 			summits.add(summit);

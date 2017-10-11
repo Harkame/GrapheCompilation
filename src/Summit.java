@@ -17,7 +17,11 @@ class Summit
 		
 		public static Summit getColorableSummit(ArrayList<Summit> summits, int k)
 		{
-			return null;
+			Summit colorableSummit = null;
+			
+			
+			
+			return colorableSummit;
 		}
 		
 		public int getFirstAvailableColor()
