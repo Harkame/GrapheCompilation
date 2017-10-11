@@ -14,26 +14,21 @@ public class Graphe
 	
 	public void colorate(int k) throws CloneNotSupportedException
 	{
-		Summit summit = Summit.getColorableSummit(summits, k);
-		
-		if(summit == null)
+		if(summits.size() == 0)
 			return;
 		
-		if(true) //il existe un sommet s trivialement colorable
-		{
-			Graphe newGraphe = (Graphe) this.clone();
-			newGraphe.removeSummit(summit);
-			
-			newGraphe.colorate(k);
-			
+		Summit summit = Summit.getColorableSummit(summits, k);
+		
+		Graphe newGraphe = (Graphe) this.clone();
+		newGraphe.removeSummit(summit);
+		
+		newGraphe.colorate(k);
+		
+		if(summit != null)		
 			summit.setColor(summit.getFirstAvailableColor());
-		}
+		else
 		{
-			Graphe newGraphe = (Graphe) this.clone();
-			newGraphe.removeSummit(summit);
-			
-			newGraphe.colorate(k);
-			
+			summit = Summit.getHighestDegreeSummit(newGraphe.summits);
 			summitsSpilled.add(summit);
 		}
 	}
