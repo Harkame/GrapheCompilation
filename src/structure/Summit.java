@@ -46,14 +46,20 @@ public class Summit
 			boolean colorAvailable = false;
 			
 			while(!colorAvailable)
-				f:for(Summit neighbor : neighbors)
-					if(neighbor.color == color)
+			{
+				for(int index = 0; index < neighbors.size(); index++)
+				{
+					if(neighbors.get(index).color == color)
 					{
 						color++;
-						break f;
+						
+						break;
 					}
-					else
+				
+					if(index == neighbors.size() - 1)
 						colorAvailable = true;
+				}
+			}
 			
 			return color;
 		}
