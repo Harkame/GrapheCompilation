@@ -15,6 +15,8 @@ public class Graphe
 	
 	public void colorate(int k) throws CloneNotSupportedException
 	{
+        System.out.println(toString());
+        
 		if(summits.size() == 0)
 			return;
 		
@@ -24,15 +26,23 @@ public class Graphe
 		newGraphe.summits.addAll(summits);
 		newGraphe.summitsSpilled.addAll(summitsSpilled);
 		
-		newGraphe.summits.remove(summit);
-		
-		newGraphe.colorate(k);
-		
 		if(summit != null)		
+		{			
+			newGraphe.summits.remove(summit);
+			
+			newGraphe.colorate(k);
+			
 			summit.setColor(summit.getFirstAvailableColor());
+		}
 		else
 		{
+
 			summit = Summit.getHighestDegreeSummit(newGraphe.summits);
+			
+			newGraphe.summits.remove(summit);
+			
+			newGraphe.colorate(k);
+			
 			summitsSpilled.add(summit);
 		}
 	}
