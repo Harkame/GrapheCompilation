@@ -45,13 +45,10 @@ public class Summit
 			int color = 1;
 			boolean colorAvailable = false;
 			
-			w:while(!colorAvailable)
+			while(!colorAvailable)
 				for(Summit neighbor : neighbors)
 					if(neighbor.color == color)
-					{
-						color++;
-						break w;
-					}
+						return ++color;
 					else
 						colorAvailable = true;
 			
