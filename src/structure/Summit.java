@@ -1,7 +1,8 @@
+package structure;
 import java.util.ArrayList;
 import java.util.List;
 
-class Summit
+public class Summit
 	{
 		private String name;
 		private int color;

@@ -1,4 +1,7 @@
-import java.util.Scanner;
+package main;
+
+import structure.Graphe;
+import structure.Summit;
 
 public class Main {
 
