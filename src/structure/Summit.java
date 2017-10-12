@@ -81,8 +81,11 @@ public class Summit
 			StringBuilder toString = new StringBuilder();
 			toString.append(name).append(" : ").append(color).append(" --> ");
 			for (Summit n : neighbors){
+				toString.append(System.getProperty("line.separator"));
 			    toString.append("\t\t").append(n.color).append(" : ").append(n.name);
             }
+			
+			toString.append(System.getProperty("line.separator"));
 			
 			return toString.toString();
 		}
