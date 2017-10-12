@@ -13,10 +13,8 @@ public class Graphe
 		summitsSpilled = new ArrayList<Summit>();
 	}
 	
-	public void colorate(int k) throws CloneNotSupportedException
-	{
-        System.out.println(toString());
-        
+	public void colorate(int k)
+	{  
 		if(summits.size() == 0)
 			return;
 		
@@ -27,12 +25,14 @@ public class Graphe
 		newGraphe.summitsSpilled.addAll(summitsSpilled);
 		
 		if(summit != null)		
-		{			
+		{
 			newGraphe.summits.remove(summit);
 			
 			newGraphe.colorate(k);
 			
 			summit.setColor(summit.getFirstAvailableColor());
+			
+			summits.add(summit);
 		}
 		else
 		{
