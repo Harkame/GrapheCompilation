@@ -23,8 +23,9 @@ public class Summit
 
         public static Summit getColorableSummit(List<Summit> summits, int k)
 		{
+        	//TODO Use k
 			for(Summit summit : summits)
-				if(summit.color != 0)
+				if(summit.color == 0)
 					return summit;
 			
 			return null;
