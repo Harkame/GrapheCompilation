@@ -19,8 +19,11 @@ public class Graphe
 		
 		Summit summit = Summit.getColorableSummit(summits, k);
 		
-		Graphe newGraphe = (Graphe) this.clone();
-		newGraphe.removeSummit(summit);
+		Graphe newGraphe = new Graphe();
+		newGraphe.summits.addAll(summits);
+		newGraphe.summitsSpilled.addAll(summitsSpilled);
+		
+		newGraphe.summits.remove(summit);
 		
 		newGraphe.colorate(k);
 		
