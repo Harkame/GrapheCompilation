@@ -23,11 +23,11 @@ public class Summit
 
         public static Summit getColorableSummit(List<Summit> summits, int k)
 		{
-			Summit colorableSummit = null;
+			for(Summit summit : summits)
+				if(summit.color != 0)
+					return summit;
 			
-			
-			
-			return colorableSummit;
+			return null;
 		}
 
 		public static Summit getHighestDegreeSummit(List<Summit> summits){
