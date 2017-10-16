@@ -14,7 +14,7 @@ public class Summit
 			this.name = name;
 			color = 0;
 			
-			neighbors = new ArrayList<Summit>();
+			neighbors = new ArrayList<>();
 		}
 
         public String getName() {
@@ -23,11 +23,12 @@ public class Summit
 
         public static Summit getColorableSummit(List<Summit> summits, int k)
 		{
-        	//TODO Use k
-			for(Summit summit : summits)
-				if(summit.color == 0)
-					return summit;
-			
+
+			for(Summit summit : summits){
+                if (summit.getDegree() < k && summit.color == 0){
+                    return summit;
+                }
+            }
 			return null;
 		}
 
@@ -43,9 +44,13 @@ public class Summit
 		
 		public int getFirstAvailableColor()
 		{
-			int color = 1;
+            int color = 1;
 			boolean colorAvailable = false;
-			
+
+			if (neighbors.size() == 0) {
+			    colorAvailable = true;
+            }
+
 			while(!colorAvailable)
 			{
 				for(int index = 0; index < neighbors.size(); index++)
@@ -53,7 +58,6 @@ public class Summit
 					if(neighbors.get(index).color == color)
 					{
 						color++;
-						
 						break;
 					}
 				
@@ -61,11 +65,11 @@ public class Summit
 						colorAvailable = true;
 				}
 			}
-			
-			return color;
+
+            return color;
 		}
 		
-		public int getDegree()
+		private int getDegree()
 		{
 			return neighbors.size();
 		}
@@ -85,15 +89,37 @@ public class Summit
 		@Override
 		public String toString()
 		{
+		    String ls = System.getProperty("line.separator");
 			StringBuilder toString = new StringBuilder();
-			toString.append(name).append(" : ").append(color).append(" --> ");
+			toString.append(name).append(" : (couleur ").append(color).append(") -->");
 			for (Summit n : neighbors){
-				toString.append(System.getProperty("line.separator"));
-			    toString.append("\t\t").append(n.color).append(" : ").append(n.name);
+				toString.append(ls).append("\t\t");
+                toString.append(n.name).append("(couleur ").append(n.color).append(")");
             }
 			
-			toString.append(System.getProperty("line.separator"));
+			toString.append(ls);
 			
 			return toString.toString();
 		}
-	}
+
+		public void removeNeighbor(Summit summitToRemove) {
+			neighbors.remove( summitToRemove );
+		}
+
+		public Summit copy() {
+            return new Summit(this.name);
+		}
+
+        public ArrayList<Summit> getNeighbors() {
+            return neighbors;
+        }
+
+        @Override
+        public boolean equals(Object o){
+		    return o instanceof Summit && ((Summit) o).getName().equals(this.getName());
+        }
+
+        public int getColor() {
+            return color;
+        }
+    }

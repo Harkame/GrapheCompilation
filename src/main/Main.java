@@ -5,11 +5,13 @@ import structure.Summit;
 
 public class Main {
 
-    public static void printHelp(){
+    private static void printHelp(){
         System.out.println("Usage : java -jar monExe.jar <k : coloration> <n : numero_de_graphe>");
-        System.out.println("Avec : ");
+        System.out.println("Avec n = : ");
         System.out.println("\t Graphe 1 : Losange");
-        System.out.println("\t Graphe 2 : Exmple du cours");
+        System.out.println("\t Graphe 2 : Exemple du cours");
+        System.out.println("\t Graphe 3 : Binôme");
+        System.out.println("\t Graphe 4 : Monôme");
     }
 
     public static void main (String [] args)
@@ -60,12 +62,23 @@ public class Main {
                 graphe.addSummits(t, u, v, x, y, z);
 
                 break;
+            case 3:
+                Summit s = new Summit("a");
+                Summit r = new Summit("b");
+                s.link(r);
+                graphe.addSummits(r, s);
+
+                break;
+            case 4:
+                graphe.addSummits(new Summit("a"));
+                break;
             default:
                 System.err.println("Le graphe demandé n'existe pas");
                 return;
         }
 
         graphe.colorate(k);
+        System.out.println("\n-----------------------\nGraphe final : \n" + graphe);
 
     }
 
