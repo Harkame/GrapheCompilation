@@ -5,7 +5,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
-public class Summit
+class Summit
 	{
 		private String name;
 		private int color;
@@ -127,7 +127,7 @@ public class Summit
         }
     }
 
-public class Graphe
+class Graphe
 {
 	private List<Summit> summits;
 	private List<Summit> summitsSpilled;
