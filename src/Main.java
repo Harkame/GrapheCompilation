@@ -3,6 +3,10 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
+/*
+ * @author Louis DAVIAUD
+ * @author Theo KRISZT
+ */
 class Main {
 
     private static void printHelp(){
@@ -173,10 +177,28 @@ class Summit
 		{
 		    String ls = System.lineSeparator();
 			StringBuilder toString = new StringBuilder();
-			toString.append(name).append(" : (couleur ").append(color).append(") -->");
+				
+			toString.append(name).append(" : (");
+			
+			if(color == 0)
+				toString.append("Spilled");
+			else
+				toString.append("Color : ").append(color);
+			
+			toString.append(") -->");
+			
 			for (Summit n : neighbors){
 				toString.append(ls).append("\t\t");
-                toString.append(n.name).append("(couleur ").append(n.color).append(")");
+				
+				
+				toString.append(n.name).append(" (");
+				
+				if(n.color == 0)
+					toString.append("Spilled");
+				else
+					toString.append("Color : ").append(n.color);
+				
+                toString.append(")");
             }
 
 			toString.append(ls);
