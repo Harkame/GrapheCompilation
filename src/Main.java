@@ -254,6 +254,12 @@ class Summit {
     }
 
     public int getFirstAvailableColor() {
+
+        for (Summit p : preferences){
+            if (p.color != 0)
+                return p.color;
+        }
+
         int color = 1;
         boolean colorAvailable = false;
 
@@ -346,6 +352,7 @@ class Summit {
 
     public void prefferLink(Summit t) {
         this.preferences.add(t);
+        t.preferences.add(this);
     }
 
 }
