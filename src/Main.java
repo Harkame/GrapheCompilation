@@ -151,6 +151,7 @@ class Graphe {
     private Graphe copy() {
         Graphe graphe = new Graphe();
         HashMap<Summit, List<String>> links = new HashMap<>(); // stocker les liens de chaque sommet copié par noms
+        HashMap<Summit, List<String>> prefferedLinks = new HashMap<>(); // stocker les liens de preferencesde chaque sommet copié par noms
 
         for (Summit s : summits) {
             Summit newSummit = s.copy();
@@ -161,6 +162,12 @@ class Graphe {
                 neighborsNames.add(n.getName());
             }
             links.put(newSummit, neighborsNames);
+
+            List<String> prefferedNeighborsNames = new ArrayList<>();
+            for (Summit n : s.getPrefferedNeighbors()) {
+                prefferedNeighborsNames.add(n.getName());
+            }
+            prefferedLinks.put(newSummit, prefferedNeighborsNames);
         }
 
 
@@ -168,11 +175,18 @@ class Graphe {
             graphe.summitsSpilled.add(s.copy());
 
         //Après ajout des sommets, réappliquer les liens sur les nouveaux sommets
-        for (Summit s : graphe.summits)
+        for (Summit s : graphe.summits){
             for (String name : links.get(s))
                 for (Summit n : graphe.summits)
                     if (n.getName().equals(name))
                         s.getNeighbors().add(n);
+
+            for (String name : prefferedLinks.get(s))
+                for (Summit n : graphe.summits)
+                    if (n.getName().equals(name))
+                        s.getPrefferedNeighbors().add(n);
+        }
+
 
         return graphe;
     }
@@ -253,30 +267,36 @@ class Summit {
         return summit;
     }
 
+    public boolean colorIsAvailable(int color){
+        for (int index = 0; index < neighbors.size(); index++) {
+            if (neighbors.get(index).color == color) {
+                return false;
+            }
+        }
+        return true;
+    }
+
     public int getFirstAvailableColor() {
 
         for (Summit p : preferences){
-            if (p.color != 0)
+//            System.err.println("Parcours du sommet de preference " + p.name);
+            if (p.color != 0 && colorIsAvailable(p.color)){
+//                System.err.println("Le sommet " + name + " est coloré par préférence à " + p.getName());
                 return p.color;
+            }
+
         }
 
         int color = 1;
-        boolean colorAvailable = false;
+//        boolean colorAvailable = false;
 
         if (neighbors.size() == 0) {
-            colorAvailable = true;
+//            colorAvailable = true;
+            return color;
         }
 
-        while (!colorAvailable) {
-            for (int index = 0; index < neighbors.size(); index++) {
-                if (neighbors.get(index).color == color) {
-                    color++;
-                    break;
-                }
-
-                if (index == neighbors.size() - 1)
-                    colorAvailable = true;
-            }
+        while (!colorIsAvailable(color)) {
+            color++;
         }
 
         return color;
@@ -355,4 +375,7 @@ class Summit {
         t.preferences.add(this);
     }
 
+    public List<Summit> getPrefferedNeighbors() {
+        return preferences;
+    }
 }
