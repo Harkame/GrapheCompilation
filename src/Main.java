@@ -113,7 +113,7 @@ class Graphe {
             newGraphe.colorate(k);
             raiseModifications(newGraphe);
 
-            summit.setColor(summit.getFirstAvailableColor());
+            summit.setColor(summit.getFirstAvailableColor(k));
             System.out.println("Coloration du sommet " + summit.getName() + " en couleur " + summit.getColor());
 
 
@@ -124,7 +124,22 @@ class Graphe {
             newGraphe.removeSummit(summit);
             newGraphe.colorate(k);
             raiseModifications(newGraphe);
-            summitsSpilled.add(summit);
+
+            for (Summit s : summits){
+                if (summit.equals(s)){
+                    summit = s;
+                }
+            }
+
+            int availableColor = summit.getFirstAvailableColor(k);
+            if (availableColor > 0){
+                summit.setColor(availableColor);
+                System.out.println("Réintégration du sommet " + summit.getName() + " en couleur " + summit.getColor());
+
+            }else {
+                summitsSpilled.add(summit);
+            }
+
         }
 
     }
@@ -276,28 +291,34 @@ class Summit {
         return true;
     }
 
-    public int getFirstAvailableColor() {
+    public int getFirstAvailableColor(int k) {
 
+        boolean hasPreference = false;
         for (Summit p : preferences){
-//            System.err.println("Parcours du sommet de preference " + p.name);
+            if (p.color != 0)
+                hasPreference = true;
             if (p.color != 0 && colorIsAvailable(p.color)){
-//                System.err.println("Le sommet " + name + " est coloré par préférence à " + p.getName());
+                System.out.println("Le sommet " + name + " est coloré par préférence du sommet " + p.getName());
                 return p.color;
             }
+        }
 
+        if (hasPreference){
+            System.out.println("Impossible de colorer le sommet " + name + " en fonction de ses préférences");
         }
 
         int color = 1;
-//        boolean colorAvailable = false;
 
         if (neighbors.size() == 0) {
-//            colorAvailable = true;
             return color;
         }
 
         while (!colorIsAvailable(color)) {
             color++;
         }
+
+        if (color > k)
+            return -1;
 
         return color;
     }
